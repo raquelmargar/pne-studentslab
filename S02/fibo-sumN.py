@@ -8,3 +8,10 @@ def fibon(n):
     return a
 
 def fibosum(n):
+    suma = 0
+    for i in range(1, n + 1):
+        suma += fibon(i)
+    return suma
+
+print("Sum of the first fifth elements: ", fibosum(5))
+print("Sum of the first tenth elements: ", fibosum(10))
