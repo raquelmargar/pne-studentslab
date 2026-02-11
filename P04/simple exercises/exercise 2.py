@@ -1,6 +1,10 @@
 text = "  Hello, World! Welcome to Python Programming.  "
 stripped = text.strip()
-print(stripped)
+print("Stripped: ", stripped)
 new_text = text.split()
-print(len(new_text))
-print(stripped.title())
+print("Word count: ", len(new_text))
+print("Title case: ", stripped.title())
+print("Starts with Hello: ", stripped.startswith("Hello"))
+print("Ends with ing. :", stripped.endswith("ing."))
+print("Python position: ", stripped.find("Python"))
+print("Joined: ", " - ".join(new_text))
