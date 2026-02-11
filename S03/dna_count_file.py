@@ -5,7 +5,7 @@ f.close()
 
 #option 2
 with open("dna.txt","r") as f:
-    lines = f.readlines()
+    linesz = f.readlines()
 
 def length_dna(sequence):
     return len(sequence)
