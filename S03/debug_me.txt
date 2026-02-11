@@ -1,0 +1,6 @@
+In the first exercise the bug that we find is the ZeroDivisionError: division by zero.
+This happens because in the eleventh line, the code trie sto execute the operation
+t3 = 2 * (t0 / t1).When the program calls the function f(0, 2, 3, 3), the variable t1 is
+calculated as g(3, 3), this function g subtracts the two numbers (3−3) and t1 becomes 0.
+Like dividing any number by zero is mathematically not defined, Python returns the
+ZeroDivisionError.
