@@ -1,10 +1,10 @@
 dna = "ATGCGATCGATCGATCGATCGA"
 
-print(len(dna))
-print(dna[0:5])
-print(dna[-3:])
-print(dna.lower())
-print(dna.count("ATC"))
-print(dna.replace("T", "U"))
+print("Length: ", len(dna))
+print("First 5: ", dna[0:5])
+print("Last 3: ", dna[-3:])
+print("Lowercase: ", dna.lower())
+print("ATC count: ", dna.count("ATC"))
+print("RNA: ", dna.replace("T", "U"))
 
 
