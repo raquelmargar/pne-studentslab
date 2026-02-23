@@ -30,3 +30,11 @@ def seq_reverse(seq, n):
 
         return reversed_part + rest
 
+def seq_complement(seq):
+    comp = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+    new_seq = ""
+
+    for base in seq:
+        new_seq += comp[base]
+
+    return new_seq
