@@ -18,8 +18,8 @@ class Seq:
             if base:
                 print("New sequence created!")
             else:
-                print("INCORRECT Sequence detected")
-                self.strbases = "ERROR!"
+                print("INVALID sequence!")
+                self.strbases = "ERROR"
 
     def __str__(self):
         return self.strbases
