@@ -47,3 +47,14 @@ class Seq:
                     bases[base] += 1
 
             return bases
+
+    def reverse(self):
+        if self.strbases == "NULL" or self.strbases == "ERROR":
+            return "ERROR"
+        else:
+            reversed = self.strbases[::-1]
+            return reversed
+
+
+
+
