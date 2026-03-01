@@ -4,7 +4,7 @@ class Seq:
         self.strbases = strbases
         bases = ["A", "G", "T", "C"]
         if strbases is None:
-            self.strbases = "NulL"
+            self.strbases = "NULL"
             print("NULL sequence Created")
             return
         else:
@@ -25,4 +25,7 @@ class Seq:
         return self.strbases
 
     def len(self):
-        return len(self.strbases)
+        if self.strbases == "NULL" or self.strbases == "ERROR":
+            return 0
+        else:
+            return len(self.strbases)
