@@ -35,3 +35,15 @@ class Seq:
             return 0
         else:
             return self.strbases.count(base)
+
+    def count(self):
+        if self.strbases == "NULL" or self.strbases == "ERROR":
+            return {'A': 0, 'T': 0, 'C': 0, 'G': 0}
+        else:
+            bases = {'A': 0, 'T': 0, 'C': 0, 'G': 0}
+
+            for base in self.strbases:
+                if base in bases:
+                    bases[base] += 1
+
+            return bases
