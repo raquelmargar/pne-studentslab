@@ -29,3 +29,9 @@ class Seq:
             return 0
         else:
             return len(self.strbases)
+
+    def count_base(self, base):
+        if self.strbases == "NULL" or self.strbases == "ERROR":
+            return 0
+        else:
+            return self.strbases.count(base)
