@@ -55,6 +55,18 @@ class Seq:
             reversed = self.strbases[::-1]
             return reversed
 
+    def complement(self):
+        if self.strbases == "NULL" or self.strbases == "ERROR":
+            return "ERROR"
+        else:
+            comp = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+            new_seq = ""
+
+            for base in self.strbases:
+                new_seq += comp[base]
+
+            return new_seq
+
 
 
 
