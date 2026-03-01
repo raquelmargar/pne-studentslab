@@ -67,6 +67,27 @@ class Seq:
 
             return new_seq
 
+    def read_fasta(self, filename):
+        from pathlib import Path
+
+        try:
+            file_contents = Path(filename).read_text()
+            text = file_contents.split("\n")[1:]
+            final_text = "".join(text)
+
+            for base in final_text:
+                if base not in ["A", "T", "C", "G"]:
+                    self.strbases = "ERROR"
+                    print("INVALID sequence!")
+                    return
+
+            self.strbases = final_text
+            print("New sequence loaded!")
+
+        except FileNotFoundError:
+            print(f"File {filename} not found")
+            self.strbases = "ERROR"
+
 
 
 
