@@ -2,7 +2,7 @@ from Seq1 import Seq
 from Client0 import Client
 
 PRACTICE = 2
-EXERCISE = 1
+EXERCISE = 4
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
