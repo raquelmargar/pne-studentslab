@@ -1,3 +1,5 @@
+import socket
+
 class Client:
     def __init__(self, ip, port):
        self.ip = ip
@@ -9,17 +11,23 @@ class Client:
     def ping(self):
         print("OK")
 
-    def talk(msg):
-        PORT = 8081
-        IP = "212.128.255.91"
+    def talk(self, msg):
+        # -- Create the socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        while True:
-            ms = input("Enter your message:")
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # establish the connection to the Server (IP, PORT)
+        s.connect((self.ip, self.port))
 
-            s.connect((IP, PORT))
+        # Send data.
+        s.send(str.encode(msg))
 
-            s.send(str.encode(ms))
-            s.close()
+        # Receive data
+        response = s.recv(2048).decode("utf-8")
+
+        # Close the socket
+        s.close()
+
+        # Return the response
+        return response
 
 
