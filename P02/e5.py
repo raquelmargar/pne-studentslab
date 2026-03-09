@@ -17,6 +17,7 @@ gene = "FRAT1"
 rute = "../S04/sequences/" + gene + ".txt"
 base = str(s.read_fasta(rute))
 
+print(f"Gene {gene}")
 for i in range(0, 5):
 
     l = base[10*i : 10*(i+1)]
