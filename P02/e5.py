@@ -15,15 +15,13 @@ c = Client(IP, PORT)
 s = Seq()
 gene = "FRAT1"
 rute = "../S04/sequences/" + gene + ".txt"
-base = s.read_fasta(rute)
+base = str(s.read_fasta(rute))
 
 for i in range(0, 5):
-    l = base[10 * i : 10]
 
+    l = base[10*i : 10*(i+1)]
+    print(f"Fragment {i+1}: {l}")
+    response = c.talk(l)
 
-
-    print(f"Sending the {gene} to the server...")
-    response = c.talk(str(s))
-    print(f"To server: {str(s)}")
-
+    print(f"To server: {l}")
     print(f"From server: {response}")
