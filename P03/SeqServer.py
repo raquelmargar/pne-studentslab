@@ -1,11 +1,11 @@
-#from P01_RAQUEL_MARTÍN.Seq1 import Seq
+from P01_RAQUEL_MARTÍN.Seq1 import Seq
 from P02_RAQUEL_MARTIN.Client0 import Client
-from Seq1 import Seq
 
 import socket
 from termcolor import colored
 
 seq_list = ["ACGTA", "ACTGA", "GTACT", "GTACT", "TCGAT"]
+gene_list = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
 # Configure the Server's IP and PORT
 PORT = 8080
 IP = "127.0.0.1" # this IP address is local, so only requests from the same machine are possible
@@ -60,18 +60,28 @@ while True:
         elif command == "INFO":
             seq = Seq(cmd[1])
             count = seq.count()
-            response = f"Sequence: {cmd[1]} \nTotal length{len(cmd[1])}"
+            response = f"Sequence: {cmd[1]}\nTotal length{len(cmd[1])} \n"
             for key, value in count.items():
                 p = (value / len(cmd[1]) * 100)
                 pr = round(p, 2)
-                response += f"{key}: {value} ({pr} %)\n"
+                response += f"{key}: {value} ({pr}%)\n"
         elif command == "COMP":
             seq = Seq(cmd[1])
             response = seq.complement()
         elif command == "REV":
             seq = Seq(cmd[1])
             response = seq.reverse()
-
+        elif command == "GENE":
+            name = cmd[1]
+            if name in gene_list:
+                seq = Seq()
+                try:
+                    seq.read_fasta(f"../S04/sequences/{name}.txt")
+                    response = str(seq)
+                except FileNotFoundError:
+                    response = f"ERROR: {name}.txt not found"
+            else:
+                response = "ERROR: unkown gene"
 
         color_msg = colored(cmd[0] + " " + "command", "green")
         print(f"{color_msg}")
