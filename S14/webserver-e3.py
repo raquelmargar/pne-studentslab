@@ -24,7 +24,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             file_name = self.path.strip("/") # no tienes que definir el ptah porque es algo que ya viene en lo de handler, y es simplemente el html que quiere el client
 
             if file_name == "":
-                file_name = "index.html"
+                file_name = "index.html" #los html son texto
 
             path = Path(file_name)
             contents = path.read_text()
