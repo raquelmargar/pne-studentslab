@@ -8,5 +8,3 @@ f.close()
 #option 2
 with open("dna.txt","r") as f:
     linesz = f.readlines()
-
-count_bases("")

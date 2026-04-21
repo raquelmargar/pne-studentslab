@@ -12,13 +12,13 @@ class Seq:
         # -- We just return the string with the sequence
         return self.strbases
 
-    def len(self):
-        """Calculate the length of the sequence"""
-        return len(self.strbases)
 
-seq_list = [Seq("ACT"), Seq("GATA"), Seq("CAGATA")]
-def print_seqs(seq_list):
-    for id, seq_obj in enumerate(seq_list):
-        print(f"Sequence {id}: (Length: {seq_obj.len()}) {seq_obj}")
+# --- Main program
+s1 = Seq("AGTACACTGGT")
+s2 = Seq("CGTAAC")
 
-print_seqs(seq_list)
+# -- Printing the objects
+print(f"Sequence 1: {s1}")
+print(f"Sequence 2: {s2}")
+print("Testing....")
+

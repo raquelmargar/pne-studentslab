@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SEQ2 SERVER</title>
+</head>
+<body>
+
+<h1>SEQ2 SERVER</h1>
+
+<hr>
+
+<h2>Ping</h2>
+<a href="/ping">Check server</a>
+
+<hr>
+
+<h2>Get sequence</h2>
+
+<form action="/get" method="get">
+
+    <label for="seq">Select sequence number (0-4):</label>
+
+    <select name="seq" id="seq">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+    <input type="submit" value="GET">
+</form>
+
+<hr>
+
+<h2>Get a gene</h2>
+
+<form action="/gene" method="get">
+
+    <label for="gene">Select gene name:</label>
+
+    <select name="gene" id="gene">
+
+        <option value="U5">U5</option>
+        <option value="ADA">ADA</option>
+        <option value="FRAT1">FRAT1</option>
+        <option value="FXN">FXN</option>
+        <option value="RNU6_269P">RNU6_269P</option>
+
+    </select>
+
+    <button type="submit">GENE</button>
+
+</form>
+
+<hr>
+
+<h2>Operation</h2>
+
+<form action="/operation" method="get">
+
+    <label>Sequence:</label>
+    <input type="text" name="seq">
+
+    <br><br>
+
+    <label>Operation:</label>
+
+    <select name="op">
+        <option value="1">Info</option>
+        <option value="2">Complement</option>
+        <option value="3">Reverse</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">OPERATE</button>
+
+</form>
+
+</body>
+</html>

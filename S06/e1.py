@@ -6,11 +6,11 @@ class Seq:
         # passed as argument when creating the object
         self.strbases = strbases
         bases = ["A", "G", "T", "C"]
+        base = True
         for i in self.strbases:
-            if i in bases:
-                base = True
-            else:
+            if i not in bases:
                 base = False
+                break  # salimos en cuanto hay error
 
         if base:
             print("New sequence created!")

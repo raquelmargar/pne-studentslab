@@ -1,4 +1,3 @@
-
 from Seq1 import Seq
 
 gene_list = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
