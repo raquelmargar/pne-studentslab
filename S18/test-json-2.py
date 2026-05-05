@@ -29,3 +29,4 @@ print(len(phoneNumbers))
 for i, num in enumerate(phoneNumbers):
     termcolor.cprint("  Phone " + str(i) + ": ", 'blue', end='')
     print(num)
+
