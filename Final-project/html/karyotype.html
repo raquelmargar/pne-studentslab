@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Karyotype of specifics species</title>
+</head>
+<body style="background-color: rgb(253, 242, 181);">
+
+<p>The names of the chromosomes are:</p>
+
+<ul>
+
+{% for sp in chromosomes %}
+
+<li>{{ sp }}</li>
+{% endfor %}
+</ul>
+<a href="/">Main page</a>
+</body>
+</html>
