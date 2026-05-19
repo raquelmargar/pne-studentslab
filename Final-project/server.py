@@ -75,7 +75,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 if "species" in arguments:
 
                     species = arguments["species"][0]
-                    species = species.lower().replace(" ", "_")
+                    species = species.replace(" ", "%20")
                     conn = http.client.HTTPConnection("rest.ensembl.org")
                     conn.request("GET", f"/info/assembly/{species}?content-type=application/json")
                     response = conn.getresponse()
@@ -109,7 +109,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             elif path == "/chromosomeLength":
                 if "species" in arguments and "chromo" in arguments:
                     species = arguments["species"][0]
-                    species = species.lower().replace(" ", "_")
+                    species = species.replace(" ", "%20")
                     chromosome = arguments["chromo"][0]
 
                     conn = http.client.HTTPConnection("rest.ensembl.org")
