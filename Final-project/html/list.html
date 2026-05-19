@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Genes in x region</title>
+</head>
+<body style="background-color: rgb(179, 57, 57);">
+
+<p>The human genes that overlap the region in chromosome {{chromo}} from {{start}} to {{end}} are:</p>
+
+{% for g in genes %}
+    <li>{{ g }}</li>
+{% endfor %}
+
+<a href="/">Main page</a>
+</body>
+</html>
