@@ -7,6 +7,7 @@ from urllib.parse import parse_qs, urlparse
 import json
 import jinja2 as j
 from Seq1 import Seq
+
 PORT = 8080
 
 socketserver.TCPServer.allow_reuse_address = True
@@ -14,12 +15,17 @@ socketserver.TCPServer.allow_reuse_address = True
 
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
+    def send_json_response(self, data):
+        json_string = json.dumps(data)
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', len(str.encode(json_string)))
+        self.end_headers()
+        self.wfile.write(str.encode(json_string))
+
     def do_GET(self):
 
         termcolor.cprint(self.requestline, 'green')
-
-        # Open the form1.html file
-        # Read the index from the file
 
         try:
             url_path = urlparse(self.path)
@@ -54,6 +60,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         species_list.append(sp["display_name"])
 
                         counter += 1
+
+                if "json" in arguments and arguments["json"][0] == "1":
+                    self.send_json_response({"limit": limit, "species": species_list})
+                    return
 
                 html_file = Path("html/limitation.html")
 
@@ -93,6 +103,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                 if region.get("coord_system") == "chromosome" or region.get("is_chromosome") == 1:
                                     chromosomes_list.append(region.get("name"))
 
+                        if "json" in arguments and arguments["json"][0] == "1":
+                            self.send_json_response({"chromosomes": chromosomes_list})
+                            return
+
                         html_file = Path("html/karyotype.html")
                         contents = html_file.read_text()
                         template = j.Template(contents)
@@ -129,6 +143,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     length = region.get("length")
                                     break
 
+                        if "json" in arguments and arguments["json"][0] == "1":
+                            self.send_json_response({"length": length})
+                            return
+
                         html_file = Path("html/length.html")
                         contents = html_file.read_text()
 
@@ -152,6 +170,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         data = response.read().decode("utf-8")
                         gene_data = json.loads(data)
                         gene_id = gene_data.get("id")
+
+                        if "json" in arguments and arguments["json"][0] == "1":
+                            self.send_json_response({"gene": gene, "id": gene_id})
+                            return
 
                         html_file = Path("html/lookup.html")
                         contents = html_file.read_text()
@@ -182,6 +204,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                             seq_data = json.loads(response2.read().decode("utf-8"))
                             sequence = seq_data.get("seq")
 
+                            if "json" in arguments and arguments["json"][0] == "1":
+                                self.send_json_response({"gene": gene, "sequence": sequence})
+                                return
+
                             html_file = Path("html/Seq.html")
                             contents = html_file.read_text()
                             template = j.Template(contents)
@@ -207,6 +233,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         start = gene_data.get("start")
                         end = gene_data.get("end")
                         length = int(end) - int(start) + 1
+
+                        if "json" in arguments and arguments["json"][0] == "1":
+                            self.send_json_response(
+                                {"gene": gene, "chromo": chromo, "start": start, "end": end, "length": length,
+                                 "id": gene_id})
+                            return
 
                         html_file = Path("html/info.html")
                         contents = html_file.read_text()
@@ -253,6 +285,14 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                 perc_g = 0
                                 perc_t = 0
 
+                            if "json" in arguments and arguments["json"][0] == "1":
+                                self.send_json_response({
+                                    "gene": gene, "length": total_len,
+                                    "perc_A": perc_a, "perc_C": perc_c,
+                                    "perc_G": perc_g, "perc_T": perc_t
+                                })
+                                return
+
                             html_file = Path("html/calculations.html")
                             contents = html_file.read_text()
                             template = j.Template(contents)
@@ -283,6 +323,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         for item in overlap_data:
                             if "external_name" in item:
                                 genes_list.append(item["external_name"])
+
+                        if "json" in arguments and arguments["json"][0] == "1":
+                            self.send_json_response({"genes": genes_list, "chromo": chromo, "start": start, "end": end})
+                            return
 
                         html_file = Path("html/list.html")
                         contents = html_file.read_text()
